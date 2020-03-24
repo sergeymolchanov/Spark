@@ -2098,7 +2098,9 @@ moveToOffline(moveToOfflineContactItem);
      */
     public static final Comparator<ContactGroup> GROUP_COMPARATOR = ( group1, group2 ) -> {
         // Make sure that offline group is always on bottom.
-        if (group2.isOfflineGroup()) {
+        if (group1.isOfflineGroup() && !group2.isOfflineGroup()) {
+            return 1;
+        } else if (group2.isOfflineGroup() && !group1.isOfflineGroup()) {
             return -1;
         }
 
